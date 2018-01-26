@@ -21,7 +21,24 @@ public class Solution {
             //System.out.println("max width :"+solution.getMaxWidthOfTree(solution.root));
             solution.printRootToLeafPaths();
             solution.printAllAncesstorsOfBinaryTree(solution.root, 0);
+            System.out.println(solution.findLCA(solution.root, 2, 6).getData());
 
+        }
+
+        public Node findLCA(Node root, int n1, int n2){
+
+            if(root ==null)
+                return null;
+
+            if(root.getData()==n1 || root.getData()==n2)
+                return root;
+
+            Node left = findLCA(root.getlChild(), n1, n2);
+            Node right = findLCA(root.getrChild(), n1, n2);
+
+            if(left!=null && right!=null)
+                return root;
+            return left==null ? right : left;
         }
 
 
@@ -167,7 +184,7 @@ public class Solution {
 
         private void getNumberOfLeafNodesInTree(){
 
-            Queue<Node> queue= new LinkedList<>();
+            Queue<Node> queue= new LinkedList<Node>();
             queue.add(root);
             while(!queue.isEmpty()){
                 Node temp = queue.poll();
@@ -190,9 +207,9 @@ public class Solution {
         * 4 5 6 7 2 3 1*/
         public void printBinaryTreeInGivenOrder(){
 
-            Queue<Node> queue = new LinkedList<>();
+            Queue<Node> queue = new LinkedList<Node>();
             queue.add(root);
-            Stack<Node> s = new Stack<>();
+            Stack<Node> s = new Stack<Node>();
 
             while(true){
 
@@ -275,7 +292,7 @@ public class Solution {
             if(root ==null)
                 return;
 
-            Queue<Node> queue = new LinkedList<>();
+            Queue<Node> queue = new LinkedList<Node>();
             queue.add(root);
             while(true){
                 if(queue.isEmpty())
@@ -295,7 +312,7 @@ public class Solution {
         public void insert(int data){
 
             Node node = new Node(data);
-            Queue<Node> queue = new LinkedList<>();
+            Queue<Node> queue = new LinkedList<Node>();
             if(root==null) {
                 root = node;
                 return;
