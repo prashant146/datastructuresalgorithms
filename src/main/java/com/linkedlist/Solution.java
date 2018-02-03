@@ -3,6 +3,7 @@ package com.linkedlist;
 public class Solution {
 
     private Node first;
+    private Node loopFirst;
 
     public static void main(String[] args) {
         Solution solution = new Solution();
@@ -16,7 +17,7 @@ public class Solution {
         solution.insertAtLast(8);
         solution.insertAtLast(9);
         solution.insertAtLast(10);
-        solution.displayLinkedList();
+        solution.displayLinkedList(solution.first);
         /*solution.deleteNode(4);
         solution.deleteNode(1);
         solution.displayLinkedList();*/
@@ -27,6 +28,100 @@ public class Solution {
         System.out.println("Element is present : "+data);
         solution.swapNodes(2, 9);*/
         solution.nthFromLast(10);
+        solution.nthFromLastRec(solution.first, 3);
+        solution.createLoopedLinkedList();
+        solution.detectLoop();
+        solution.displayLinkedList(solution.loopFirst);
+        //solution.reverseLinkedList();
+        //solution.displayLinkedList(solution.first);
+        solution.reverseLinkedListRecursively(solution.first, solution.first.next);
+        solution.displayLinkedList(solution.first);
+
+
+    }
+
+    private void reverseLinkedListRecursively(Node current, Node next){
+        if(current==first){
+            current.next=null;
+        }
+        if(next==null){
+            first=current;
+            return;
+        }
+        Node temp = next.next;
+        next.next=current;
+        reverseLinkedListRecursively(next, temp);
+
+    }
+
+    private void reverseLinkedList(){
+
+        Node current = first;
+        Node previous = null;
+        while(current!=null){
+            Node temp =current.next;
+            current.next=previous;
+            previous =current;
+            current=temp;
+        }
+        first = previous;
+    }
+
+    private void detectLoop(){
+
+        Node slowPtr = loopFirst;
+        Node fastPtr = loopFirst.next;
+
+        while(slowPtr!=fastPtr){
+            slowPtr=slowPtr.next;
+            fastPtr=fastPtr.next.next;
+        }
+        System.out.println("slow data:"+slowPtr.data+" fast data:"+fastPtr.data);
+        slowPtr=loopFirst;
+        fastPtr=fastPtr.next;
+        while(slowPtr.next!=fastPtr.next){
+            slowPtr=slowPtr.next;
+            fastPtr=fastPtr.next;
+        }
+        fastPtr.next=null;
+    }
+
+    private void createLoopedLinkedList(){
+
+        insertAtLastLoop( 1);
+        insertAtLastLoop( 2);
+        insertAtLastLoop( 3);
+        insertAtLastLoop( 4);
+        insertAtLastLoop( 5);
+        insertAtLastLoop( 6);
+        insertAtLastLoop( 7);
+        insertAtLastLoop( 8);
+        insertAtLastLoop( 9);
+        insertAtLastLoop( 10);
+
+
+        Node current = loopFirst;
+        while(current.data!=5){
+            current=current.next;
+        }
+        Node temp =current;
+        while(current.data!=10){
+            current=current.next;
+        }
+        current.next=temp;
+    }
+
+    private int nthFromLastRec(Node obj, int n){
+        if(obj==null)
+            return 0;
+
+        int temp = 1+nthFromLastRec(obj.next, n);
+        if(temp == n){
+            System.out.println(n+"th from last recursively is : "+obj.data);
+            return temp;
+        }
+
+        return temp;
     }
 
     private void nthFromLast(int n){
@@ -138,6 +233,19 @@ public class Solution {
 
     }
 
+    public void insertAtLastLoop(int data){
+        Node obj = new Node(data);
+        if(loopFirst==null){
+            loopFirst=obj;
+            return;
+        }
+        Node current = loopFirst;
+        while(current.next!=null){
+            current=current.next;
+        }
+        current.next=obj;
+    }
+
     public void insertAtLast(int data){
         Node obj = new Node(data);
         if(first==null){
@@ -154,8 +262,8 @@ public class Solution {
         previous.next=obj;
     }
 
-    public void displayLinkedList(){
-        Node current = first;
+    public void displayLinkedList(Node obj){
+        Node current = obj;
         while(current!=null){
             System.out.print(current.data+" ");
             current=current.next;
