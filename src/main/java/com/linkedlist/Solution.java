@@ -1,9 +1,14 @@
 package com.linkedlist;
 
+import java.util.HashSet;
+
 public class Solution {
 
     private Node first;
     private Node loopFirst;
+    private int count=0;
+    private Node beforePivotFirst;
+    private Node afterPivotFirst;
 
     public static void main(String[] args) {
         Solution solution = new Solution();
@@ -27,17 +32,102 @@ public class Solution {
         int data = obj==null ? 0:obj.data;
         System.out.println("Element is present : "+data);
         solution.swapNodes(2, 9);*/
-        solution.nthFromLast(10);
+        /*solution.nthFromLast(10);
         solution.nthFromLastRec(solution.first, 3);
         solution.createLoopedLinkedList();
         solution.detectLoop();
-        solution.displayLinkedList(solution.loopFirst);
+        solution.displayLinkedList(solution.loopFirst);*/
         //solution.reverseLinkedList();
         //solution.displayLinkedList(solution.first);
-        solution.reverseLinkedListRecursively(solution.first, solution.first.next);
-        solution.displayLinkedList(solution.first);
+        //solution.reverseLinkedListRecursively(solution.first, solution.first.next);
+        //solution.displayLinkedList(solution.first);
+        //solution.displayLinkedListFromLast(solution.first);
+        //solution.first = solution.reverseInK(solution.first, 3);
+        //solution.displayLinkedList(solution.first);
+        //solution.deleteDups(solution.first);
+        //solution.displayLinkedList(solution.first);
+        Node temp = solution.nthFromLast(solution.first, 4);
+        System.out.println("nth from last :"+temp.data);
 
 
+
+    }
+
+    private void partitionAlL(int data, int pivot){
+        int[] arr = {};
+
+        Node obj = new Node(data);
+
+        if(data<pivot){
+
+            if(beforePivotFirst==null){
+                beforePivotFirst=obj;
+            }else{
+                obj.next=beforePivotFirst;
+                beforePivotFirst=obj;
+            }
+        }else{
+            if(afterPivotFirst==null){
+                afterPivotFirst=obj;
+            }else{
+                obj.next=afterPivotFirst;
+                afterPivotFirst=obj;
+
+            }
+        }
+    }
+
+    private void deleteDups(Node n){
+
+        Node current = first;
+        Node previous = null;
+        HashSet<Integer> hashSet = new HashSet<>();
+
+        while(current!=null){
+
+            if(hashSet.contains(current.data)){
+                previous.next=current.next;
+            }else{
+                hashSet.add(current.data);
+                previous=current;
+
+            }
+            current=current.next;
+
+        }
+
+    }
+
+    private Node reverseInK(Node obj, int k){
+
+        if(obj==null)
+            return null;
+
+        Node current = obj;
+        Node previous = null;
+        Node temp = null;
+        int count =0;
+
+        while(current!=null && count<k){
+            temp = current.next;
+            current.next=previous;
+            previous=current;
+            current=temp;
+            count++;
+        }
+
+        obj.next=reverseInK(current, k);
+
+        return previous;
+
+    }
+
+    private void displayLinkedListFromLast(Node obj){
+        if(obj==null)
+            return;
+
+        displayLinkedListFromLast(obj.next);
+        System.out.print(obj.data+" ");
     }
 
     private void reverseLinkedListRecursively(Node current, Node next){
@@ -109,6 +199,19 @@ public class Solution {
             current=current.next;
         }
         current.next=temp;
+    }
+
+    private Node nthFromLast(Node obj, int n){
+
+        if(obj==null)
+            return null;
+
+        Node temp = nthFromLast(obj.next, n);
+        count++;
+        if(n==count){
+            return obj;
+        }else
+            return temp;
     }
 
     private int nthFromLastRec(Node obj, int n){
