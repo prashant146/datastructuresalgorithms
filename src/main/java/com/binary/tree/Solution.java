@@ -1,8 +1,6 @@
 package com.binary.tree;
 
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Stack;
+import java.util.*;
 
 public class Solution {
 
@@ -19,9 +17,54 @@ public class Solution {
             solution.insert(7);
             //solution.diameter(solution.root);
             //System.out.println("max width :"+solution.getMaxWidthOfTree(solution.root));
-            solution.printRootToLeafPaths();
-            solution.printAllAncesstorsOfBinaryTree(solution.root, 0);
-            System.out.println(solution.findLCA(solution.root, 2, 6).getData());
+            //solution.printRootToLeafPaths();
+            //solution.printAllAncesstorsOfBinaryTree(solution.root, 0);
+            //System.out.println(solution.findLCA(solution.root, 2, 6).getData());
+            solution.verticalOrderTraversal();
+
+        }
+
+        public void printTopView(){
+
+            Queue<QNode> queue = new LinkedList<>();
+            queue.add(new QNode(0, root));
+
+            Set<Integer> set = new HashSet<>();
+            while(!queue.isEmpty()){
+                QNode temp = queue.poll();
+                int hd = temp.getHd();
+                Node curr = temp.getRoot();
+                //if(set.contains())
+            }
+
+
+        }
+
+        public void verticalOrderTraversal(){
+            Map<Integer, List<Integer>> map = new TreeMap<>();
+            verticalOrderTraversal(root, 0, map);
+
+            for(Map.Entry<Integer, List<Integer>> entry : map.entrySet()){
+                System.out.println(entry. getKey()+"---"+entry.getValue());
+            }
+        }
+
+        public void verticalOrderTraversal(Node root, int hd, Map<Integer, List<Integer>> treeMap){
+
+            if(root==null){
+                return;
+            }
+
+            if(treeMap.containsKey(hd)){
+                treeMap.get(hd).add(root.getData());
+            }else{
+                List<Integer> lst = new ArrayList<>();
+                lst.add(root.getData());
+                treeMap.put(hd, lst);
+            }
+
+            verticalOrderTraversal(root.getlChild(), hd-1, treeMap);
+            verticalOrderTraversal(root.getrChild(), hd+1, treeMap);
 
         }
 
@@ -292,7 +335,7 @@ public class Solution {
             if(root ==null)
                 return;
 
-            Queue<Node> queue = new LinkedList<Node>();
+            Queue<Node> queue = new LinkedList<>();
             queue.add(root);
             while(true){
                 if(queue.isEmpty())
@@ -312,7 +355,7 @@ public class Solution {
         public void insert(int data){
 
             Node node = new Node(data);
-            Queue<Node> queue = new LinkedList<Node>();
+            Queue<Node> queue = new LinkedList<>();
             if(root==null) {
                 root = node;
                 return;

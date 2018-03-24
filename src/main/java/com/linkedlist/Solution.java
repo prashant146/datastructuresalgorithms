@@ -1,6 +1,7 @@
 package com.linkedlist;
 
 import java.util.HashSet;
+import java.util.Hashtable;
 
 public class Solution {
 
@@ -12,16 +13,16 @@ public class Solution {
 
     public static void main(String[] args) {
         Solution solution = new Solution();
-        solution.insertAtLast(1);
-        solution.insertAtLast(2);
-        solution.insertAtLast(3);
         solution.insertAtLast(4);
-        solution.insertAtLast(5);
-        solution.insertAtLast(6);
-        solution.insertAtLast(7);
+        solution.insertAtLast(8);
+        solution.insertAtLast(3);
+        solution.insertAtLast(9);
+        solution.insertAtLast(1);
+        solution.insertAtLast(3);
+        /*solution.insertAtLast(7);
         solution.insertAtLast(8);
         solution.insertAtLast(9);
-        solution.insertAtLast(10);
+        solution.insertAtLast(10);*/
         solution.displayLinkedList(solution.first);
         /*solution.deleteNode(4);
         solution.deleteNode(1);
@@ -46,10 +47,161 @@ public class Solution {
         //solution.displayLinkedList(solution.first);
         //solution.deleteDups(solution.first);
         //solution.displayLinkedList(solution.first);
-        Node temp = solution.nthFromLast(solution.first, 4);
-        System.out.println("nth from last :"+temp.data);
+        //Node temp = solution.nthFromLast(solution.first, 4);
+        //System.out.println("nth from last :"+temp.data);
+        //System.out.println(solution.getMiddleOfLinkedList().data);
+        //solution.removeDuplicatesFromSortedLinkedList();
+        //solution.displayLinkedList(solution.first);
+        //solution.add1ToTheGivenLinkedListRepresentedAsNumber();
+        //solution.displayLinkedList(solution.first);
+        //sort(3, solution.first);
+        solution.first = solution.sortInGroup(solution.first, 3);
+        solution.displayLinkedList(solution.first);
 
 
+
+    }
+
+    public Node sortInGroup(Node root, int k){
+
+        int count =0;
+        Node first = null;
+        Node curr1 = root;
+        Node returnNode=null;
+        while(count<k && curr1!=null){
+            Node obj = new Node(curr1.data);
+            if(first==null){
+                first = obj;
+            }else{
+                Node current = first;
+                if(obj.data<first.data){
+                    obj.next=first;
+                    first=obj;
+                }else{
+                    while(current.next!=null&&current.next.data>obj.data){
+                        current=current.next;
+                    }
+                    if(current.next==null) {
+                        current.next = obj;
+                        returnNode = obj;
+                    }else{
+                        Node temp = current.next;
+                        current.next=obj;
+                        obj.next=temp;
+                        returnNode=obj.next;
+                    }
+
+                }
+            }
+            curr1=curr1.next;
+        }
+        returnNode.next=sortInGroup(curr1, k);
+        return first;
+    }
+
+    static Node sort(int k, Node list) {
+
+
+        Node current = list;
+        Node first = null;
+        java.util.List<Node> lst = new java.util.ArrayList<>();
+
+        while(current!=null){
+
+
+            //obj.val=current.val;
+            first=null;
+
+            for(int i=0; i<k; i++){
+                Node obj = new Node(current.data);
+                if(first==null){
+
+                    first= obj;
+
+                }else{
+                    Node curr1 = first;
+                    Node previous = null;
+                    while(curr1!=null&&curr1.data<current.data){
+                        previous=curr1;
+                        curr1 = curr1.next;
+                    }
+                    if(previous==null){
+                        obj.next=first;
+                        first=obj;
+                    }else{
+                        Node t = new Node(current.data);
+                        previous.next=t;
+                        t.next=curr1;
+
+                    }
+
+                }
+
+                current=current.next;
+            }
+            lst.add(first);
+            for(int a=0 ;a<lst.size();a++){
+                System.out.println(lst.get(a).data);
+            }
+
+
+        }
+
+        for(int i=0 ;i<lst.size();i++){
+            Node temp = first;
+
+        }
+
+
+
+
+
+        return null;
+
+    }
+
+
+    /*
+    *
+    * Add 1 to a number represented as linked list
+    * */
+
+    private void add1ToTheGivenLinkedListRepresentedAsNumber(){
+        reverseLinkedList();
+        Node current = first;
+        while(true){
+            current.data = current.data+1;
+            if(current.data==10){
+                current.data=0;
+
+            }else{
+                break;
+            }
+            current=current.next;
+
+        }
+        reverseLinkedList();
+
+    }
+
+    /*
+    * Remove duplicate element from sorted Linked List (Function Problem)
+*/
+
+    private void removeDuplicatesFromSortedLinkedList(){
+
+        HashSet<Integer> hashSet = new HashSet<>();
+        Node current = first;
+        Node previous = null;
+        while(current!=null){
+            if(hashSet.contains(current.data)){
+                previous.next=current.next;
+            }else{
+                hashSet.add(current.data);
+            }
+            previous=current;
+            current=current.next;
+        }
 
     }
 
@@ -225,6 +377,18 @@ public class Solution {
         }
 
         return temp;
+    }
+
+    private Node getMiddleOfLinkedList(){
+
+        Node slow = first;
+        Node fast = first;
+
+        while(fast!=null && fast.next!=null){
+            slow=slow.next;
+            fast=fast.next.next;
+        }
+        return slow;
     }
 
     private void nthFromLast(int n){
