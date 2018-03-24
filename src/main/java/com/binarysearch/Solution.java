@@ -266,7 +266,7 @@ public class Solution {
             return null;
 
         while(current.data!=data){
-            if(data>current.data)
+            if(data<current.data)
                 current=current.left;
             else
                 current=current.right;
