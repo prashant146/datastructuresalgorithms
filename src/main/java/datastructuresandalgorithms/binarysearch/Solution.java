@@ -102,7 +102,9 @@ public class Solution {
     }
 
     /*Check whether BST contains Dead End or not
-    Given a Binary search Tree that contains positive integer values greater then 0. The task is to check whether the BST contains a dead end or not. Here Dead End means, we are not able to insert any element after that node.
+    Given a Binary search Tree that contains positive integer values greater then 0.
+    The task is to check whether the BST contains a dead end or not. Here Dead End means,
+    we are not able to insert any element after that node.
 
     Examples:
 

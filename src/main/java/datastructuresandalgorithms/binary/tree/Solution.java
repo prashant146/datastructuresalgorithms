@@ -45,7 +45,7 @@ public class Solution {
             verticalOrderTraversal(root, 0, map);
 
             for(Map.Entry<Integer, List<Integer>> entry : map.entrySet()){
-                System.out.println(entry. getKey()+"---"+entry.getValue());
+                System.out.println(entry. getKey()+"---"+entry.getValue().get(0));
             }
         }
 
@@ -250,9 +250,9 @@ public class Solution {
         * 4 5 6 7 2 3 1*/
         public void printBinaryTreeInGivenOrder(){
 
-            Queue<Node> queue = new LinkedList<Node>();
+            Queue<Node> queue = new LinkedList<>();
             queue.add(root);
-            Stack<Node> s = new Stack<Node>();
+            Stack<Node> s = new Stack<>();
 
             while(true){
 

@@ -17,6 +17,7 @@ public class ExchangerRunnable implements Runnable {
 
         try {
             Object previous = this.object;
+
             Object newObject = this.exchanger.exchange(this.object);
 
             System.out.format("Thread: %s exchanged: %s to: %s", Thread.currentThread().getName(), previous, newObject);

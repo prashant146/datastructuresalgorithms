@@ -22,8 +22,8 @@ public class Solution {
 
         CyclicBarrier cyclicBarrier = new CyclicBarrier(2, runnable1);
         CyclicBarrier cyclicBarrier1 = new CyclicBarrier(2, runnable2);
-        Thread t1 = new Thread(new CyclicBarrierRunnable(cyclicBarrier, cyclicBarrier1));
-        Thread t2 = new Thread(new CyclicBarrierRunnable(cyclicBarrier, cyclicBarrier1));
+        Thread t1 = new Thread(new CyclicBarrierRunnable(cyclicBarrier, cyclicBarrier1), "First Thread");
+        Thread t2 = new Thread(new CyclicBarrierRunnable(cyclicBarrier, cyclicBarrier1), "Second Thread");
 
         t1.start();t2.start();
 
