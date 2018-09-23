@@ -13,14 +13,15 @@ public class Solution {
             solution.insert(3);
             solution.insert(4);
             solution.insert(5);
-            solution.insert(6);
-            solution.insert(7);
+            //solution.insert(6);
+            //solution.insert(7);
             //solution.diameter(solution.root);
             //System.out.println("max width :"+solution.getMaxWidthOfTree(solution.root));
             //solution.printRootToLeafPaths();
             //solution.printAllAncesstorsOfBinaryTree(solution.root, 0);
             //System.out.println(solution.findLCA(solution.root, 2, 6).getData());
-            solution.verticalOrderTraversal();
+            //solution.verticalOrderTraversal();
+            solution.inorderTreeTraverse(solution.root);
 
         }
 
@@ -328,6 +329,19 @@ public class Solution {
 
 
             return max;
+
+        }
+
+
+
+        public void inorderTreeTraverse(Node root){
+            if(root==null){
+                return;
+            }
+
+            inorderTreeTraverse(root.getlChild());
+            System.out.print(root.getData()+" ");
+            inorderTreeTraverse(root.getrChild());
 
         }
 

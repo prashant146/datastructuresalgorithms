@@ -18,7 +18,8 @@ public class Solution {
                 .ifPresent(System.out::println);
 
         Stream.of("d2", "a2", "b1", "b3", "c")
-                .map(s->s.toUpperCase())
+                .map(String::toUpperCase)
+                //.map(s->s.toUpperCase())
                 .filter(s->s.startsWith("A"))
                 .forEach(System.out::println);
 

@@ -1,0 +1,60 @@
+1
+2 3
+45 67
+
+
+
+1
+
+2 3
+345
+4567
+
+
+
+q.put 1
+
+while(q is not empty){
+
+    Node node = q.poll;
+    print(node.data)
+
+    if(node.left!=null)
+        q.add(node.left)
+    if(node.right!=null)
+        q.add(node.right)
+
+
+}
+
+1
+23
+4
+
+
+
+insert(int data)
+obj = new Node(data);
+if(root==null){
+root = obj;
+return;
+}
+q.add(root)
+while(q is not empty){
+Node node = q.poll;
+
+if(node.left==null){
+node.left=obj;
+return;
+}else{
+q.add(obj.left)
+}
+if(node.right==null){
+ node.right=obj;
+ return;
+ }else{
+ q.add(obj.right)
+ }
+
+}
+

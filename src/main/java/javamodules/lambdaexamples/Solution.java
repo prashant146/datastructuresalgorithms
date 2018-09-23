@@ -17,16 +17,10 @@ public class Solution {
         System.out.println(biFunction.apply(10, 5));
 
         BiFunction<Integer, Integer, Integer> bf = (a, b)->{
-
             return a*b;
         };
-
         Consumer<String> consumer = System.out::println;
         consumer.accept("Consumer example");
-
-
-
-
     }
 
     public static Integer multiply(int a, int b){

@@ -1,0 +1,43 @@
+1)Absolute pathname: A pathname is absolute, if it is described in relation to root, thus absolute pathnames always
+begin with a /. Following are some examples of absolute filenames.
+             /etc/passwd
+             /users/sjones/chem/notes
+             /dev/rdsk/Os3
+
+2)Relative pathname: A pathname can also be
+ to your current working directory. Relative pathnames never
+begin with /. Relative to user amrood's home directory, some pathnames might look like this −
+
+chem/notes
+personal/res
+
+3)chmod: Symbolic Mode
+$ls -l testfile
+-rwxrwxr--  1 amrood   users 1024  Nov 2 00:10  testfile
+
+$chmod o+wx testfile
+$ls -l testfile
+-rwxrwxrwx  1 amrood   users 1024  Nov 2 00:10  testfile
+$chmod u-x testfile
+$ls -l testfile
+-rw-rwxrwx  1 amrood   users 1024  Nov 2 00:10  testfile
+$chmod g = rx testfile
+$ls -l testfile
+-rw-r-xrwx  1 amrood   users 1024  Nov 2 00:10  testfile
+
+chmod with Absolute Permissions:
+
+$ls -l testfile
+-rwxrwxr--  1 amrood   users 1024  Nov 2 00:10  testfile
+
+$ chmod 755 testfile
+$ls -l testfile
+-rwxr-xr-x  1 amrood   users 1024  Nov 2 00:10  testfile
+$chmod 743 testfile
+$ls -l testfile
+-rwxr---wx  1 amrood   users 1024  Nov 2 00:10  testfile
+$chmod 043 testfile
+$ls -l testfile
+----r---wx  1 amrood   users 1024  Nov 2 00:10  testfile
+
+
