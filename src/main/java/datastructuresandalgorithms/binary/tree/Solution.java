@@ -1,5 +1,7 @@
 package datastructuresandalgorithms.binary.tree;
 
+import datastructuresandalgorithms.binary.tree.util.BinaryTreeUtil;
+
 import java.util.*;
 
 public class Solution {
@@ -8,11 +10,14 @@ public class Solution {
 
         public static void main(String[] args) {
             Solution solution = new Solution();
-            solution.insert(1);
-            solution.insert(2);
-            solution.insert(3);
-            solution.insert(4);
-            solution.insert(5);
+
+            BinaryTreeUtil obj = new BinaryTreeUtil(solution.root);
+            obj.insert(1);
+            obj.insert(2);
+            obj.insert(3);
+            obj.insert(4);
+            obj.insert(5);
+            solution.root=obj.root;
             //solution.insert(6);
             //solution.insert(7);
             //solution.diameter(solution.root);
@@ -21,7 +26,7 @@ public class Solution {
             //solution.printAllAncesstorsOfBinaryTree(solution.root, 0);
             //System.out.println(solution.findLCA(solution.root, 2, 6).getData());
             //solution.verticalOrderTraversal();
-            solution.inorderTreeTraverse(solution.root);
+            //solution.inorderTreeTraverse(solution.root);
 
         }
 
@@ -243,34 +248,6 @@ public class Solution {
 
         }
 
-        /*Prints the tree in
-        * 1
-        * 2 3
-        * 4 5 6 7
-        * As
-        * 4 5 6 7 2 3 1*/
-        public void printBinaryTreeInGivenOrder(){
-
-            Queue<Node> queue = new LinkedList<>();
-            queue.add(root);
-            Stack<Node> s = new Stack<>();
-
-            while(true){
-
-                Node temp = queue.poll();
-                if(temp.getlChild()!=null)
-                    queue.add(temp.getlChild());
-                if(temp.getrChild()!=null)
-                    queue.add(temp.getrChild());
-
-                if(temp.getrChild()!=null)
-                    s.push(temp.getrChild());
-                if(temp.getlChild()!=null)
-                    s.push(temp.getlChild());
-
-
-            }
-        }
 
         public int getHeightOfTree(Node root){
 
@@ -334,66 +311,8 @@ public class Solution {
 
 
 
-        public void inorderTreeTraverse(Node root){
-            if(root==null){
-                return;
-            }
 
-            inorderTreeTraverse(root.getlChild());
-            System.out.print(root.getData()+" ");
-            inorderTreeTraverse(root.getrChild());
 
-        }
-
-        public void printTree(){
-            if(root ==null)
-                return;
-
-            Queue<Node> queue = new LinkedList<>();
-            queue.add(root);
-            while(true){
-                if(queue.isEmpty())
-                    return;
-                Node temp = queue.poll();
-                System.out.println(temp.getData());
-
-                if(temp.getlChild()!=null){
-                    queue.add(temp.getlChild());
-                }
-                if(temp.getrChild()!=null)
-                    queue.add(temp.getrChild());
-            }
-
-        }
-
-        public void insert(int data){
-
-            Node node = new Node(data);
-            Queue<Node> queue = new LinkedList<>();
-            if(root==null) {
-                root = node;
-                return;
-            }
-
-            queue.add(root);
-            while(true){
-                Node temp = queue.poll();
-                if(temp.getlChild()!=null)
-                    queue.add(temp.getlChild());
-                else {
-                    temp.setlChild(node);
-                    return;
-                }
-
-                if(temp.getrChild()!=null)
-                    queue.add(temp.getrChild());
-                else{
-                    temp.setrChild(node);
-                    return;
-                }
-            }
-
-        }
 
     }
 
