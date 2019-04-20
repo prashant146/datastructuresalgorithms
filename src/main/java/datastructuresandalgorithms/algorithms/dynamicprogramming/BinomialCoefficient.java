@@ -18,7 +18,7 @@ public class BinomialCoefficient {
 
     public static void main(String[] args) {
         BinomialCoefficient binomialCoefficient = new BinomialCoefficient();
-        System.out.println(binomialCoefficient.getBinomialCoefficient(5, 2));
+        System.out.println(binomialCoefficient.getBinomialCoefficient(10, 4));
     }
 
     /*private int dynamicProgrammingSolution(int n, int k){

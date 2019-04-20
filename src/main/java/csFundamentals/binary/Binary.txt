@@ -1,0 +1,19 @@
+Decimal to Binary:
+
+ 2|100   0
+ 2|50    0
+ 2|25    1
+ 2|12    0
+ 2|6     0
+ 2|3     1
+ 2|1     1
+
+ 1101000 = 2^6 + 2^5 + 2^2 =64+32+4=100
+
+ 1's complement
+ 1)Range for n bit = -2^(n-1) - +2^(n-1)
+ 2)flip all 0's to 1
+ 3)1st bit is signed. 0 for + and 1 for negative number
+
+
+
