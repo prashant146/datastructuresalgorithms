@@ -17,7 +17,6 @@ public class Producer implements Runnable{
                 blockingQueue.put(i);
                 System.out.println("Peeking in bq in Producer: "+blockingQueue.peek());
             }
-
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

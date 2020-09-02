@@ -1,4 +1,4 @@
-package datastructuresandalgorithms.algorithms.dynamicprogramming;
+package datastructuresandalgorithms.algorithms.dynamicprogramming.fibonacci;
 
 public class Fibonacci {
 

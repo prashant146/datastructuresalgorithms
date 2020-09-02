@@ -7,7 +7,7 @@ public class BlockingQueueExample {
 
     public static void main(String[] args) {
 
-        BlockingQueue<Integer> blockingQueue = new ArrayBlockingQueue<Integer>(10);
+        BlockingQueue<Integer> blockingQueue = new ArrayBlockingQueue<>(10);
         Producer producer = new Producer(blockingQueue);
         Consumer consumer = new Consumer(blockingQueue);
 
